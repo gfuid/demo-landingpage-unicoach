@@ -39,7 +39,6 @@ export const EarthGlobe: React.FC<EarthGlobeProps> = ({ activeOffice }) => {
   const targetRotYRef = useRef((76.97 * Math.PI / 180) + Math.PI / 2);
   const targetRotXRef = useRef(-(29.39 * Math.PI / 180) * 0.7);
   const markersRef = useRef<Array<{ pin: THREE.Mesh; beacon: THREE.Mesh; name: string }>>([]);
-  const glowRef = useRef<THREE.Mesh | null>(null);
 
   useEffect(() => {
     if (!mountRef.current) return;
