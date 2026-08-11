@@ -34,6 +34,7 @@ export const offices: OfficeData[] = [
     accent: 'from-indigo-600 to-blue-600',
     accentColor: '#6366f1',
     bgBadge: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+    color: 0x6366f1,
   },
   {
     city: 'Delhi',
@@ -49,6 +50,7 @@ export const offices: OfficeData[] = [
     accent: 'from-emerald-600 to-teal-600',
     accentColor: '#10b981',
     bgBadge: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+    color: 0x10b981,
   },
   {
     city: 'Jaipur',
@@ -64,6 +66,7 @@ export const offices: OfficeData[] = [
     accent: 'from-orange-500 to-amber-600',
     accentColor: '#f97316',
     bgBadge: 'bg-orange-50 text-orange-700 border-orange-200',
+    color: 0xf97316,
   },
   {
     city: 'Bangalore',
@@ -79,6 +82,7 @@ export const offices: OfficeData[] = [
     accent: 'from-amber-500 to-yellow-600',
     accentColor: '#eab308',
     bgBadge: 'bg-amber-50 text-amber-800 border-amber-200',
+    color: 0xeab308,
   },
   {
     city: 'Kolkata',
@@ -94,6 +98,7 @@ export const offices: OfficeData[] = [
     accent: 'from-blue-600 to-cyan-600',
     accentColor: '#3b82f6',
     bgBadge: 'bg-blue-50 text-blue-700 border-blue-200',
+    color: 0x3b82f6,
   },
   {
     city: 'Nepal',
@@ -109,6 +114,7 @@ export const offices: OfficeData[] = [
     accent: 'from-pink-600 to-rose-600',
     accentColor: '#ec4899',
     bgBadge: 'bg-pink-50 text-pink-700 border-pink-200',
+    color: 0xec4899,
   },
   {
     city: 'Sri Lanka',
@@ -124,6 +130,7 @@ export const offices: OfficeData[] = [
     accent: 'from-cyan-600 to-teal-600',
     accentColor: '#06b6d4',
     bgBadge: 'bg-cyan-50 text-cyan-700 border-cyan-200',
+    color: 0x06b6d4,
   },
   {
     city: 'Bangladesh',
@@ -139,6 +146,7 @@ export const offices: OfficeData[] = [
     accent: 'from-emerald-600 to-green-600',
     accentColor: '#10b981',
     bgBadge: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+    color: 0x10b981,
   },
 ];
 

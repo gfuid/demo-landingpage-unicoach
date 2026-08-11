@@ -15,6 +15,7 @@ import { CentreLocatorSection } from './components/CentreLocatorSection';
 import { CtaBannerSection } from './components/CtaBannerSection';
 import { Footer } from './components/Footer';
 import { EligibilityModal } from './components/EligibilityModal';
+import { CustomCursor } from './components/CustomCursor';
 
 export const App: React.FC = () => {
   const [activeOffice, setActiveOffice] = useState<OfficeLocation | null>(null);
@@ -33,27 +34,29 @@ export const App: React.FC = () => {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    setModalServiceTitle(undefined);
   };
 
   return (
-    <div className="relative flex flex-col min-h-screen bg-white font-inter text-slate-900 selection:bg-indigo-600 selection:text-white">
-      {/* 1. Deep Space 3D Earth Loader (fades after 100% completion) */}
-      {!loadingFinished && (
-        <Loader onLoadingComplete={() => setLoadingFinished(true)} />
-      )}
+    <div className="relative min-h-screen bg-white text-slate-900 selection:bg-indigo-500 selection:text-white">
+      {/* Interactive Floating Graduation Cap Custom Cursor */}
+      <CustomCursor />
 
-      {/* 2. Global Interactive 3D Earth Globe (Three.js canvas - moves right/left/center on scroll) */}
+      {/* Intro Loader */}
+      {!loadingFinished && <Loader onLoadingComplete={() => setLoadingFinished(true)} />}
+
+      {/* Canvas background for 3D Earth Globe */}
       <EarthGlobe activeOffice={activeOffice} />
 
-      {/* 3. Header Navbar */}
+      {/* Header & Sticky Navigation */}
       <Navbar onOpenModal={handleOpenModal} />
 
-      {/* 4. Main Content Sections */}
-      <main className="relative z-10 flex-1">
+      {/* Main Content Layout */}
+      <main className="relative z-10">
         <Hero onOpenModal={handleOpenModal} />
         <ServicesSection onOpenModal={handleOpenModal} />
         <GsapShowcaseSection onOpenModal={handleOpenModal} />
-        <ScrollRevealSection onActiveOffice={handleActiveOffice} onOpenModal={handleOpenModal} />
+        <ScrollRevealSection onActiveOffice={handleActiveOffice} />
         <DestinationsSection onOpenModal={handleOpenModal} />
         <StatsSection />
         <TestimonialsSection />
@@ -63,10 +66,10 @@ export const App: React.FC = () => {
         <CtaBannerSection onOpenModal={handleOpenModal} />
       </main>
 
-      {/* 5. Footer */}
+      {/* Global Footer */}
       <Footer onOpenModal={handleOpenModal} />
 
-      {/* 6. Lead Modal */}
+      {/* Global Eligibility & Free Counseling Modal */}
       <EligibilityModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}

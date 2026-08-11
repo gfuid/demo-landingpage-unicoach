@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Newspaper, Calendar, ArrowRight, Video, Play } from 'lucide-react';
 
 interface NewsSectionProps {
@@ -45,15 +46,21 @@ export const NewsSection: React.FC<NewsSectionProps> = ({ onOpenModal }) => {
   ];
 
   return (
-    <section className="py-24 bg-[#0a0f29] text-white relative overflow-hidden">
+    <section className="py-24 bg-[#0a0f29] text-white relative overflow-hidden select-none">
       {/* Background decoration */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-indigo-500/5 blur-[120px] pointer-events-none" />
 
       <div className="max-w-[1200px] mx-auto px-6 md:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <div data-aos="fade-down" className="text-left">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6"
+        >
+          <div className="text-left">
             <span className="text-[11px] font-black uppercase tracking-[0.3em] text-indigo-400 mb-3 block">
               UniCoach Bulletin
             </span>
@@ -64,12 +71,18 @@ export const NewsSection: React.FC<NewsSectionProps> = ({ onOpenModal }) => {
               Stay updated with the latest visa rules, official company announcements, and expert-curated student success reviews.
             </p>
           </div>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
           {/* Left Column: Newsroom Updates (7 Columns) */}
-          <div data-aos="fade-right" className="lg:col-span-7 space-y-6 text-left">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-7 space-y-6 text-left"
+          >
             <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-2">
               <h3 className="text-xl font-bold tracking-tight text-white flex items-center gap-2 font-instrument">
                 <Newspaper className="text-indigo-400" size={20} />
@@ -85,11 +98,15 @@ export const NewsSection: React.FC<NewsSectionProps> = ({ onOpenModal }) => {
             </div>
 
             <div className="space-y-4">
-              {newsList.map((item) => (
-                <div
+              {newsList.map((item, idx) => (
+                <motion.div
                   key={item.id}
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.12 }}
                   onClick={() => onOpenModal(`News: ${item.title}`)}
-                  className="p-6 bg-slate-950/40 border border-white/5 rounded-3xl flex flex-col sm:flex-row gap-6 hover:border-white/10 hover:bg-slate-950/70 transition-all duration-300 cursor-pointer group"
+                  className="p-6 bg-slate-950/50 border border-white/10 rounded-3xl flex flex-col sm:flex-row gap-6 hover:border-blue-400/40 hover:bg-slate-950/80 transition-all duration-300 cursor-pointer group shadow-xl"
                 >
                   <div className="flex flex-col justify-between flex-grow">
                     <div className="space-y-2">
@@ -111,13 +128,19 @@ export const NewsSection: React.FC<NewsSectionProps> = ({ onOpenModal }) => {
                       Read details <ArrowRight size={10} />
                     </span>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: Student Digest & Spotlights (5 Columns) */}
-          <div data-aos="fade-left" className="lg:col-span-5 space-y-6 text-left">
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-5 space-y-6 text-left"
+          >
             <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-2">
               <h3 className="text-xl font-bold tracking-tight text-white flex items-center gap-2 font-instrument">
                 <Video className="text-indigo-400" size={20} />
@@ -133,11 +156,15 @@ export const NewsSection: React.FC<NewsSectionProps> = ({ onOpenModal }) => {
             </div>
 
             <div className="space-y-6">
-              {digestList.map((item) => (
-                <div
+              {digestList.map((item, idx) => (
+                <motion.div
                   key={item.id}
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.12 }}
                   onClick={() => onOpenModal(`Digest: ${item.title}`)}
-                  className="bg-slate-950/40 border border-white/5 rounded-3xl overflow-hidden hover:border-white/10 hover:bg-slate-950/70 transition-all duration-300 cursor-pointer group flex flex-col"
+                  className="bg-slate-950/50 border border-white/10 rounded-3xl overflow-hidden hover:border-orange-400/40 hover:bg-slate-950/80 transition-all duration-300 cursor-pointer group flex flex-col shadow-xl"
                 >
                   <div className="relative aspect-[16/9] bg-slate-900 overflow-hidden border-b border-white/5">
                     <img 
@@ -167,11 +194,11 @@ export const NewsSection: React.FC<NewsSectionProps> = ({ onOpenModal }) => {
                       {item.desc}
                     </p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
 
-          </div>
+          </motion.div>
 
         </div>
 

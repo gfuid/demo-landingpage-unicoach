@@ -1,6 +1,12 @@
 import React, { useState, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
+import usaVideo from '../assets/video/USA.mp4';
+import ukVideo from '../assets/video/UK.mp4';
+import canadaVideo from '../assets/video/canada.mp4';
+import australiaVideo from '../assets/video/Australia.mp4';
+import germanyVideo from '../assets/video/germany.mp4';
+import irelandVideo from '../assets/video/ireland.mp4';
 
 // ==========================================
 // DESTINATIONS SECTION
@@ -25,7 +31,8 @@ const destinations = [
     slug: 'usa',
     stats: '4500+ Universities • Avg. Salary: $75k+',
     tag: 'Most Popular',
-    image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=800&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1534430480872-3498386e7856?w=1200&auto=format&fit=crop&q=80',
+    video: usaVideo,
   },
   {
     name: 'United Kingdom',
@@ -33,7 +40,8 @@ const destinations = [
     slug: 'uk',
     stats: '150+ Universities • Avg. Salary: £45k+',
     tag: 'Top Ranked',
-    image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1200&auto=format&fit=crop&q=80',
+    video: ukVideo,
   },
   {
     name: 'Canada',
@@ -41,7 +49,8 @@ const destinations = [
     slug: 'canada',
     stats: '100+ Colleges • Avg. Salary: C$65k+',
     tag: 'PR Friendly',
-    image: 'https://images.unsplash.com/photo-1507608869274-d3177c8bb4c7?w=800&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1517935706615-2717063c2225?w=1200&auto=format&fit=crop&q=80',
+    video: canadaVideo,
   },
   {
     name: 'Australia',
@@ -49,7 +58,8 @@ const destinations = [
     slug: 'australia',
     stats: '40+ Universities • Avg. Salary: A$70k+',
     tag: 'Work & Study',
-    image: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=800&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=1200&auto=format&fit=crop&q=80',
+    video: australiaVideo,
   },
   {
     name: 'Germany',
@@ -57,7 +67,8 @@ const destinations = [
     slug: 'germany',
     stats: '300+ Universities • Avg. Salary: €55k+',
     tag: 'Tuition Free',
-    image: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=1200&auto=format&fit=crop&q=80',
+    video: germanyVideo,
   },
   {
     name: 'Ireland',
@@ -65,7 +76,8 @@ const destinations = [
     slug: 'ireland',
     stats: '20+ Universities • Avg. Salary: €45k+',
     tag: 'Rising Hub',
-    image: 'https://images.unsplash.com/photo-1549918864-48ac978761a4?w=800&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=1200&auto=format&fit=crop&q=80',
+    video: irelandVideo,
   },
 ];
 
@@ -224,23 +236,39 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({ onOpen
                   onMouseEnter={() => setHoveredIndex(i)}
                   onClick={() => onOpenModal(`Study in ${dest.name}`)}
                 >
-                  {/* Background Image */}
-                  <img
-                    src={dest.image}
-                    alt={dest.name}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700"
-                    style={{
-                      transform: isHovered ? 'scale(1.08)' : 'scale(1)',
-                    }}
-                  />
+                  {/* Background Image & Hover-Triggered Video */}
+                  {dest.video && isHovered ? (
+                    <video
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      preload="none"
+                      poster={dest.image}
+                      src={dest.video}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700"
+                      style={{
+                        transform: 'scale(1.08)',
+                      }}
+                    />
+                  ) : (
+                    <img
+                      src={dest.image}
+                      alt={dest.name}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700"
+                      style={{
+                        transform: isHovered ? 'scale(1.08)' : 'scale(1)',
+                      }}
+                    />
+                  )}
 
-                  {/* Dark Gradient Overlay — Navy tinted */}
+                  {/* Gradient Overlay — subtle and clear */}
                   <div
                     className="absolute inset-0 transition-opacity duration-500"
                     style={{
                       background: isHovered
-                        ? 'linear-gradient(to top, rgba(10,26,74,0.88) 0%, rgba(10,26,74,0.35) 40%, rgba(10,26,74,0.1) 100%)'
-                        : 'linear-gradient(to top, rgba(10,26,74,0.75) 0%, rgba(10,26,74,0.4) 50%, rgba(10,26,74,0.25) 100%)',
+                        ? 'linear-gradient(to top, rgba(10,26,74,0.85) 0%, rgba(10,26,74,0.3) 40%, rgba(10,26,74,0.05) 100%)'
+                        : 'linear-gradient(to top, rgba(10,26,74,0.55) 0%, rgba(10,26,74,0.2) 50%, rgba(10,26,74,0.05) 100%)',
                     }}
                   />
 
@@ -324,11 +352,24 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({ onOpen
                 className="relative flex-shrink-0 w-[260px] h-[380px] rounded-2xl overflow-hidden snap-center cursor-pointer group"
                 onClick={() => onOpenModal(`Study in ${dest.name}`)}
               >
-                <img
-                  src={dest.image}
-                  alt={dest.name}
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
+                {dest.video ? (
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="metadata"
+                    poster={dest.image}
+                    src={dest.video}
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                ) : (
+                  <img
+                    src={dest.image}
+                    alt={dest.name}
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                )}
                 <div
                   className="absolute inset-0"
                   style={{ background: 'linear-gradient(to top, rgba(10,26,74,0.85) 0%, rgba(10,26,74,0.3) 50%, transparent 100%)' }}

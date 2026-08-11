@@ -1,5 +1,6 @@
 import React from 'react';
-import { Calendar, Clock, Users, Star, Award } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Calendar, Clock, Users, Star, Award, ArrowUpRight } from 'lucide-react';
 
 interface EventsSectionProps {
   onOpenModal: (eventTitle: string) => void;
@@ -14,13 +15,13 @@ const speakers = [
 
 const whyAttend = [
   { icon: <Star size={24} />, title: 'Top Speakers', desc: 'Hear from Indian students living abroad, university reps, counsellors & experts' },
-  { icon: <Award size={24} />, title: 'Quality content', desc: 'You get personal insights & guidance straight from the best speakers' },
+  { icon: <Award size={24} />, title: 'Quality Content', desc: 'You get personal insights & guidance straight from the best speakers' },
   { icon: <Users size={24} />, title: 'Networking', desc: 'Meet fellow study abroad aspirants and seniors' },
 ];
 
 export const EventsSection: React.FC<EventsSectionProps> = ({ onOpenModal }) => {
   return (
-    <section id="events" className="py-24 bg-[#f8fafc] overflow-hidden relative">
+    <section id="events" className="py-24 bg-[#f8fafc] overflow-hidden relative select-none">
       {/* Ambient Glows */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-100/40 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-100/40 rounded-full blur-[120px] pointer-events-none" />
@@ -29,20 +30,28 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ onOpenModal }) => 
         
         {/* 1. Featured Event & Stats */}
         <div>
-          <div data-aos="fade-down" className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
             <p className="text-gray-500 text-sm md:text-base font-medium uppercase tracking-widest mb-4">
               Join Our Global Network
             </p>
-            <h2 className="text-3xl md:text-4xl font-black text-slate-900 font-instrument">
-              Meet our top experts & university reps
+            <h2 className="text-3xl md:text-5xl font-black text-slate-900 font-instrument">
+              Meet Our Top Experts & University Reps
             </h2>
-          </div>
+          </motion.div>
           
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
             {/* Featured Event Card */}
-            <div
-              data-aos="fade-right"
-              data-aos-delay="100"
+            <motion.div
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
               className="lg:col-span-3 bg-white rounded-[32px] p-8 md:p-12 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] border border-gray-100 flex flex-col justify-center relative overflow-hidden group hover:shadow-[0_30px_60px_-15px_rgba(99,102,241,0.15)] transition-all duration-500"
             >
               <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-indigo-500 to-purple-500 rounded-l-3xl transform origin-top group-hover:scale-y-110 transition-transform duration-500" />
@@ -75,7 +84,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ onOpenModal }) => 
                   Register Now For Free
                 </button>
               </div>
-            </div>
+            </motion.div>
 
             {/* 4 Stats Grid */}
             <div className="lg:col-span-2 grid grid-cols-2 gap-4 md:gap-6">
@@ -85,11 +94,13 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ onOpenModal }) => 
                 { icon: <Star size={28} className="text-purple-500" />, val: '4.8/5', label: 'Student Rating' },
                 { icon: <Award size={28} className="text-emerald-500" />, val: '#1', label: 'In Study Abroad' },
               ].map((stat, i) => (
-                <div
+                <motion.div
                   key={i}
-                  data-aos="fade-left"
-                  data-aos-delay={150 + i * 100}
-                  className="bg-white rounded-[24px] p-6 md:p-8 border border-gray-100 shadow-sm flex flex-col justify-center gap-4 group"
+                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.15 + i * 0.1 }}
+                  className="bg-white rounded-[24px] p-6 md:p-8 border border-gray-100 shadow-sm flex flex-col justify-center gap-4 group hover:-translate-y-1.5 transition-transform duration-300"
                 >
                   <div className="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center mb-2 group-hover:scale-110 group-hover:bg-white group-hover:shadow-lg transition-all duration-300">
                     {stat.icon}
@@ -98,7 +109,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ onOpenModal }) => 
                     <h4 className="text-3xl font-black text-slate-900 tracking-tight">{stat.val}</h4>
                     <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mt-1">{stat.label}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -106,13 +117,21 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ onOpenModal }) => 
 
         {/* 2. Upcoming Events */}
         <div>
-          <h3 data-aos="fade-down" className="text-3xl md:text-4xl font-black text-slate-900 mb-12 text-center font-instrument">
+          <motion.h3
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl md:text-4xl font-black text-slate-900 mb-12 text-center font-instrument"
+          >
             Upcoming Events
-          </h3>
+          </motion.h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div
-              data-aos="zoom-in"
-              data-aos-delay="150"
+            <motion.div
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
               className="bg-white rounded-[32px] overflow-hidden border border-gray-100 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] hover:-translate-y-2 transition-all duration-500 group flex flex-col"
             >
               <div className="h-[180px] bg-gradient-to-br from-[#2563eb] to-[#1d4ed8] p-6 relative flex items-center justify-center overflow-hidden">
@@ -132,48 +151,75 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ onOpenModal }) => 
                   <span className="text-xs text-gray-500 font-bold bg-gray-50 px-3 py-1.5 rounded-lg">Speaker: Tanisha Mandre</span>
                   <button
                     onClick={() => onOpenModal('Event: UK 2026 Masters Roadmap')}
-                    className="bg-[#4f46e5] text-white px-6 py-2.5 rounded-xl text-xs font-bold shadow-[0_5px_15px_rgba(79,70,229,0.3)] hover:bg-[#4338ca] transition-all cursor-pointer"
+                    className="bg-[#4f46e5] text-white px-6 py-2.5 rounded-xl text-xs font-bold shadow-[0_5px_15px_rgba(79,70,229,0.3)] hover:bg-[#4338ca] transition-all cursor-pointer flex items-center gap-1"
                   >
-                    Register Now
+                    <span>Register Now</span>
+                    <ArrowUpRight size={14} />
                   </button>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
 
         {/* 3. Why should you attend */}
         <div className="bg-white rounded-[40px] p-12 border border-gray-100 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] relative">
-          <h3 data-aos="fade-down" className="text-3xl md:text-4xl font-black text-slate-900 text-center mb-16 font-instrument">
-            Why should you attend our events?
-          </h3>
+          <motion.h3
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl md:text-4xl font-black text-slate-900 text-center mb-16 font-instrument"
+          >
+            Why Should You Attend Our Events?
+          </motion.h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
             {whyAttend.map((item, i) => (
-              <div key={i} data-aos="fade-up" data-aos-delay={i * 120} className="text-center flex flex-col items-center relative z-10 group">
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.12 }}
+                className="text-center flex flex-col items-center relative z-10 group"
+              >
                 <div className="w-20 h-20 bg-white border-4 border-gray-50 shadow-xl text-indigo-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 group-hover:border-indigo-50 transition-all duration-500">
                   {item.icon}
                 </div>
                 <h4 className="text-xl font-black text-slate-900 mb-3">{item.title}</h4>
                 <p className="text-[15px] text-gray-500 leading-relaxed px-4 font-semibold">{item.desc}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
 
         {/* 4. Our Previous Speakers */}
         <div>
-          <h3 data-aos="fade-down" className="text-3xl md:text-4xl font-black text-slate-900 text-center mb-12 font-instrument">
+          <motion.h3
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl md:text-4xl font-black text-slate-900 text-center mb-12 font-instrument"
+          >
             Our Previous Speakers
-          </h3>
+          </motion.h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {speakers.map((speaker, i) => (
-              <div key={i} data-aos="zoom-in" data-aos-delay={i * 120} className="bg-white rounded-[32px] p-8 text-center border border-gray-100 shadow-sm hover:-translate-y-3 transition-all duration-500 group h-full">
-                <div className="w-20 h-20 mx-auto border-2 border-indigo-100 rounded-full flex items-center justify-center mb-6 bg-indigo-50 text-indigo-700 font-black text-2xl">
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 35, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="bg-white rounded-[32px] p-8 text-center border border-gray-100 shadow-sm hover:-translate-y-3 transition-all duration-500 group h-full"
+              >
+                <div className="w-20 h-20 mx-auto border-2 border-indigo-100 rounded-full flex items-center justify-center mb-6 bg-indigo-50 text-indigo-700 font-black text-2xl group-hover:scale-105 transition-transform">
                   {speaker.initials}
                 </div>
                 <h4 className="font-black text-slate-900 text-[17px] mb-2">{speaker.name}</h4>
                 <p className="text-[13px] font-semibold text-gray-500 leading-relaxed">{speaker.desc}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

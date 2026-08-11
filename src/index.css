@@ -18,8 +18,14 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+/* Fix double text / synthetic browser bolding glitch */
 .font-instrument {
   font-family: 'Instrument Serif', serif;
+  font-weight: 400 !important;
+  font-synthesis: none !important;
+  -webkit-font-synthesis: none !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .font-dancing {
