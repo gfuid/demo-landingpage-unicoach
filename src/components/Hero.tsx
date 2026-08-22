@@ -181,8 +181,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenModal }) => {
             </div>
           </div>
 
-          {/* Right Column: 3D Earth Space + GSAP 3D Floating Tilt Badges */}
+          {/* Right Column: GSAP 3D Floating Tilt Badges */}
           <div ref={rightBadgesRef} className="lg:col-span-5 relative h-[400px] md:h-[480px] perspective-[1000px] transform-gpu">
+            {/* Floating GSAP Interactive Badges */}
             {floatingBadges.map((badge, idx) => (
               <div
                 key={idx}

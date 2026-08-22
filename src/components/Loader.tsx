@@ -27,7 +27,7 @@ export const Loader: React.FC<LoaderProps> = ({ onLoadingComplete }) => {
   const zoomStartRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const totalDuration = 3800;
+    const totalDuration = 2200;
     const intervalTime = 30;
     const totalSteps = totalDuration / intervalTime;
     let step = 0;
@@ -50,14 +50,14 @@ export const Loader: React.FC<LoaderProps> = ({ onLoadingComplete }) => {
         setTimeout(() => {
           setIsVisible(false);
           if (onLoadingComplete) onLoadingComplete();
-        }, 1100);
+        }, 600);
       }
     }, intervalTime);
 
     return () => clearInterval(progressInterval);
   }, [onLoadingComplete]);
 
-  // Three.js Earth Scene
+  // Fast Instant Three.js Earth Scene
   useEffect(() => {
     if (!mountRef.current) return;
     const container = mountRef.current;
@@ -165,7 +165,7 @@ export const Loader: React.FC<LoaderProps> = ({ onLoadingComplete }) => {
 
       if (zoomStartRef.current) {
         const elapsed = performance.now() - zoomStartRef.current;
-        const duration = 1100;
+        const duration = 600;
         const p = Math.min(1.0, elapsed / duration);
         const easeP = Math.pow(p, 3);
 
@@ -220,7 +220,7 @@ export const Loader: React.FC<LoaderProps> = ({ onLoadingComplete }) => {
           initial={{ opacity: 1 }}
           exit={{ 
             opacity: 0,
-            transition: { duration: 0.6, ease: "easeOut" } 
+            transition: { duration: 0.5, ease: "easeOut" } 
           }}
           className="fixed inset-0 z-[9999] bg-[#070e1c] flex flex-col items-center justify-between overflow-hidden select-none"
         >
@@ -246,7 +246,7 @@ export const Loader: React.FC<LoaderProps> = ({ onLoadingComplete }) => {
 
           <motion.div 
             animate={isZooming ? { opacity: 0, y: -20 } : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.3 }}
             className="relative z-10 pt-8 text-center"
           >
             <span className="text-white/40 text-xs font-black tracking-[0.35em] uppercase">
@@ -256,7 +256,7 @@ export const Loader: React.FC<LoaderProps> = ({ onLoadingComplete }) => {
 
           <motion.div 
             animate={isZooming ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.3 }}
             className="relative z-10 pb-12 flex flex-col items-center w-full max-w-md px-6"
           >
             <div className="h-8 mb-4 flex items-center justify-center">
